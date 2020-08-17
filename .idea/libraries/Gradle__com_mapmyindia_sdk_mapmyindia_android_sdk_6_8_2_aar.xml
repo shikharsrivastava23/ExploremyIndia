@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapmyindia.sdk:mapmyindia-android-sdk:6.8.2@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9a8334eefc8860f7a6c1f711be6c4f0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0db53ac5390c95905e986dd32dc94761/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9a8334eefc8860f7a6c1f711be6c4f0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9a8334eefc8860f7a6c1f711be6c4f0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9a8334eefc8860f7a6c1f711be6c4f0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0db53ac5390c95905e986dd32dc94761/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0db53ac5390c95905e986dd32dc94761/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0db53ac5390c95905e986dd32dc94761/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

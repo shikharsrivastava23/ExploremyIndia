@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "268496215756",
+    "firebase_url": "https://exploremyindia-748e2.firebaseio.com",
+    "project_id": "exploremyindia-748e2",
+    "storage_bucket": "exploremyindia-748e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268496215756:android:60adc1688c9d488d52ac69",
+        "android_client_info": {
+          "package_name": "com.example.exploremyindia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268496215756-8v3ktm22mghkkjppd85c3sluf53ridku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.exploremyindia",
+            "certificate_hash": "10751ea75725f1893c0db23115359e4351165ca8"
+          }
+        },
+        {
+          "client_id": "268496215756-hpalm9d75c4t36ue9p624ljcv6rlqe38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB03I52FGQJ2M_65MdQKjU7Sa3WcDG5YOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268496215756-hpalm9d75c4t36ue9p624ljcv6rlqe38.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapmyindia.sdk:place-widget:1.1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2fb88e10a0c5af2676fe3bf0e30d2988/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2fb88e10a0c5af2676fe3bf0e30d2988/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2fb88e10a0c5af2676fe3bf0e30d2988/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/79f012dd7c6665c9fe6ed83848cbea9c/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/79f012dd7c6665c9fe6ed83848cbea9c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/79f012dd7c6665c9fe6ed83848cbea9c/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapmyindia.sdk:annotation-plugin:0.1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1f0b205b5cd6bd860c200281a438cc42/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1f0b205b5cd6bd860c200281a438cc42/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1f0b205b5cd6bd860c200281a438cc42/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c9075646bef46fbb17736f3911c2bca/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c9075646bef46fbb17736f3911c2bca/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c9075646bef46fbb17736f3911c2bca/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

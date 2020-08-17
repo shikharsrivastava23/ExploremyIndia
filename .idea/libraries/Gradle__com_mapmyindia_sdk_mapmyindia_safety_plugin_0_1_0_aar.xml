@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapmyindia.sdk:mapmyindia-safety-plugin:0.1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/32f63069975aa3256c49cb298c9bea74/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/32f63069975aa3256c49cb298c9bea74/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/32f63069975aa3256c49cb298c9bea74/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01a3243428513f5dff65a28354fbd180/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01a3243428513f5dff65a28354fbd180/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01a3243428513f5dff65a28354fbd180/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
