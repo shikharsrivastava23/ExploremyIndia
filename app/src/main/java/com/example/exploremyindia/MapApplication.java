@@ -1,4 +1,4 @@
-package com.mapmyindia.sdk.exploremyindia;
+package com.example.exploremyindia;
 
 import android.app.Application;
 
