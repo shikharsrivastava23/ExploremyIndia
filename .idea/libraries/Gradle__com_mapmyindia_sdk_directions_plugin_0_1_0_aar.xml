@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mapmyindia.sdk:directions-plugin:0.1.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76a51f3b5245fdccf88941513e12d2ff/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76a51f3b5245fdccf88941513e12d2ff/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76a51f3b5245fdccf88941513e12d2ff/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
