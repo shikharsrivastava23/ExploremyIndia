@@ -79,7 +79,7 @@ public class SignupActivity extends AppCompatActivity {
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-
+                                                    
                                                 }
                                             });
 

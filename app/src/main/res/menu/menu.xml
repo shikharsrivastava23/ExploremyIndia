@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item1"
+        android:title="@string/menu_add"
+        android:icon="@drawable/baseline_add_white_48"/>
+    <item
+        android:id="@+id/item2"
+        android:title="@string/menu_explore"
+        android:icon="@drawable/baseline_explore_white_48"/>
+    <item
+        android:id="@+id/item3"
+        android:title="@string/menu_profile"
+        android:icon="@drawable/baseline_person_white_48"/>
+</menu>

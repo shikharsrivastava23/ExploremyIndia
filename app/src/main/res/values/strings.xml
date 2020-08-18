@@ -13,5 +13,9 @@
     <string name="txt_add">ADD</string>
     <string name="pick_a_place">Pick a Place</string>
 
+    <string name="menu_add">Add</string>
+    <string name="menu_explore">Explore</string>
+    <string name="menu_profile">Profile</string>
+
 
 </resources>
