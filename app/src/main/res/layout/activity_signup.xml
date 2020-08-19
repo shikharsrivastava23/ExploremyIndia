@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/email_txt"
+        android:id="@+id/email_txt_signup"
         android:layout_width="303dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -47,18 +47,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/pwd_txt"
+        android:id="@+id/pwd_txt_signup"
         android:layout_width="303dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/bg_text_input"
         android:includeFontPadding="true"
         android:inputType="textPassword"
         android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/email_txt_signup" />
 
     <Button
         android:id="@+id/btn_signup"
@@ -74,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pwd_txt"
+        app:layout_constraintTop_toBottomOf="@+id/pwd_txt_login"
         app:layout_constraintVertical_bias="0.36" />
 
     <TextView
@@ -85,7 +84,7 @@
         android:text="EMAIL"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/email_txt"
+        app:layout_constraintBottom_toTopOf="@+id/email_txt_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent" />
@@ -111,7 +110,7 @@
         android:text="PASSWORD"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/pwd_txt"
+        app:layout_constraintBottom_toTopOf="@+id/pwd_txt_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent" />
