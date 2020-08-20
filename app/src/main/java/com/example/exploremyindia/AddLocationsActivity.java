@@ -2,11 +2,13 @@ package com.example.exploremyindia;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -29,6 +31,10 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
     private MapView mapView;
     String city;
 
+    private ConstraintLayout mBottomSheet;
+    private BottomSheetBehavior mBottomSheetBehaviour;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,10 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
         mapView = findViewById(R.id.map_view_city);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+        mBottomSheet = findViewById(R.id.add_places_bottom_sheet);
+        mBottomSheetBehaviour = BottomSheetBehavior.from(mBottomSheet);
+
 
 
     }
