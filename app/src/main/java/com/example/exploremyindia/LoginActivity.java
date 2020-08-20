@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText mEmail, mPass;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
