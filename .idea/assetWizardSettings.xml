@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/drag_handle/baseline_drag_handle_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/add/baseline_add_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="d5dde0" />
-                            <entry key="outputName" value="ic_baseline_drag_handle_24" />
+                            <entry key="color" value="69a1ff" />
+                            <entry key="outputName" value="ic_baseline_add_24" />
                             <entry key="sourceFile" value="D:\AndroidProjects\ExploremyIndia" />
                           </map>
                         </option>

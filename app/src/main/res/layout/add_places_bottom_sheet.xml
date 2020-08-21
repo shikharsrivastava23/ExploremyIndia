@@ -43,8 +43,20 @@
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="82dp"
             tools:layout_editor_absoluteY="87dp" />
-
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_add_place"
+        app:icon="@drawable/ic_baseline_add_24"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Add Place"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Places_Search_textfield" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

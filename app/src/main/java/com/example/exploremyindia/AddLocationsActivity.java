@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.textfield.TextInputEditText;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -34,6 +37,9 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
     private ConstraintLayout mBottomSheet;
     private BottomSheetBehavior mBottomSheetBehaviour;
 
+    private TextInputEditText mPlaceTextSearch;
+    private Button mAddPlace;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +55,8 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
         mBottomSheet = findViewById(R.id.add_places_bottom_sheet);
         mBottomSheetBehaviour = BottomSheetBehavior.from(mBottomSheet);
 
-
-
+        mPlaceTextSearch = findViewById(R.id.txt_place_search);
+        mAddPlace = findViewById(R.id.btn_add_place);
     }
 
 
@@ -69,6 +75,14 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
         } else {
             Toast.makeText(this, getString(R.string.pleaseCheckInternetConnection), Toast.LENGTH_SHORT).show();
         }
+
+        mAddPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String place = mPlaceTextSearch.getText().toString().trim();
+                getGeoCodePlace(place);
+            }
+        });
     }
 
     protected CameraPosition setCameraAndTilt() {
@@ -112,6 +126,40 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
             }
         });
     }
+
+    private void getGeoCodePlace(String geocodeText) {
+        MapmyIndiaGeoCoding.builder()
+                .setAddress(geocodeText)
+                .build().enqueueCall(new Callback<GeoCodeResponse>() {
+            @Override
+            public void onResponse(Call<GeoCodeResponse> call, Response<GeoCodeResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body() != null) {
+                        List<GeoCode> placesList = response.body().getResults();
+                        GeoCode place = placesList.get(0);
+                        String add = "Latitude: " + place.latitude + " longitude: " + place.longitude;
+                        addMarker(place.latitude, place.longitude);
+                        Toast.makeText(AddLocationsActivity.this, add, Toast.LENGTH_SHORT).show();
+
+//                        mapmyIndiaMap.setCameraPosition(new CameraPosition.Builder().target(new LatLng(
+//                                place.latitude, place.longitude)).zoom(10).tilt(0).build());
+
+                    } else {
+                        Toast.makeText(AddLocationsActivity.this, "Not able to get value, Try again.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(AddLocationsActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GeoCodeResponse> call, Throwable t) {
+                Toast.makeText(AddLocationsActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 
     private void addMarker(double latitude, double longitude) {
         mapmyIndiaMap.addMarker(new MarkerOptions().position(new LatLng(
