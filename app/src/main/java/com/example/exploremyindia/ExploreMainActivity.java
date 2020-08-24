@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,7 +20,19 @@ public class ExploreMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_explore_main);
 
         handleNavMenu();
+        handleImageClicks();
 
+    }
+
+    void handleImageClicks(){
+        ImageView im1 = findViewById(R.id.imageView1);
+
+        im1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ExploreMainActivity.this, "LKO!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     void handleNavMenu(){

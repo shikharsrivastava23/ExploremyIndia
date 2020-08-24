@@ -4,7 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,6 +24,7 @@ import com.mmi.services.api.geocoding.GeoCode;
 import com.mmi.services.api.geocoding.GeoCodeResponse;
 import com.mmi.services.api.geocoding.MapmyIndiaGeoCoding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,6 +42,9 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
 
     private TextInputEditText mPlaceTextSearch;
     private Button mAddPlace;
+    private Button mNextButton;
+
+    private ArrayList<Tour> mTourList;
 
 
     @Override
@@ -57,6 +63,18 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
 
         mPlaceTextSearch = findViewById(R.id.txt_place_search);
         mAddPlace = findViewById(R.id.btn_add_place);
+        mNextButton = findViewById(R.id.btn_place_next);
+
+        mTourList = new ArrayList<>();
+
+        mNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AddLocationsActivity.this, AddTourDetailsActivity.class)
+                        .putParcelableArrayListExtra("tourlist" , (ArrayList<? extends Parcelable>)mTourList));
+
+            }
+        });
     }
 
 
@@ -139,6 +157,7 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
                         GeoCode place = placesList.get(0);
                         String add = "Latitude: " + place.latitude + " longitude: " + place.longitude;
                         addMarker(place.latitude, place.longitude);
+                        addTourItem(geocodeText, place.latitude, place.longitude);
                         Toast.makeText(AddLocationsActivity.this, add, Toast.LENGTH_SHORT).show();
 
 //                        mapmyIndiaMap.setCameraPosition(new CameraPosition.Builder().target(new LatLng(
@@ -165,6 +184,11 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
         mapmyIndiaMap.addMarker(new MarkerOptions().position(new LatLng(
                 latitude, longitude)));
     }
+
+    private void addTourItem(String name, double latitude, double longitude){
+        mTourList.add(new Tour(name,"",latitude,longitude));
+    }
+
 
     @Override
     public void onMapError(int i, String s) {

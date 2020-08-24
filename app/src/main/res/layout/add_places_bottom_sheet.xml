@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="350dp"
     android:background="@drawable/bottom_sheet_bg"
+    android:elevation="30dp"
     app:behavior_hideable="true"
     app:behavior_peekHeight="62dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:elevation="30dp">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 
     <LinearLayout
@@ -47,16 +47,28 @@
 
     <Button
         android:id="@+id/btn_add_place"
-        app:icon="@drawable/ic_baseline_add_24"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="Add Place"
+        app:icon="@drawable/ic_baseline_add_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Places_Search_textfield" />
+
+    <Button
+        android:id="@+id/btn_place_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_place"
+        tools:text="Add Details" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
