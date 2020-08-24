@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AddTourDetailsActivity"></activity>
+        <activity android:name=".AddTourDetailsActivity">
+
+        </activity>
         <activity android:name=".AddLocationsActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".AddNewTourActivity">
