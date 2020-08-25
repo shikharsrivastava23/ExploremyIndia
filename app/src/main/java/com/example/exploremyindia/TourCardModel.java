@@ -7,6 +7,10 @@ public class TourCardModel {
     private String Rating;
     private String key_id;
 
+    public TourCardModel() {
+        super();
+    }
+
     public TourCardModel(String name, String username, String rating, String key_id) {
         Name = name;
         Username = username;

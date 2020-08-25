@@ -30,9 +30,28 @@ public class ExploreMainActivity extends AppCompatActivity {
         im1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ExploreMainActivity.this, "LKO!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ExploreMainActivity.this, "LKO!", Toast.LENGTH_SHORT).show();
+                nextActivity("lucknow");
             }
         });
+
+        ImageView im2 = findViewById(R.id.imageView2);
+
+        im2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(ExploreMainActivity.this, "LKO!", Toast.LENGTH_SHORT).show();
+                nextActivity("delhi");
+            }
+        });
+    }
+
+    void nextActivity(String city){
+        city = city.toLowerCase();
+        Intent intent = new Intent(ExploreMainActivity.this, ExploreCityHomeActivity.class);
+        intent.putExtra("city",city);
+
+        startActivity(intent);
     }
 
     void handleNavMenu(){
