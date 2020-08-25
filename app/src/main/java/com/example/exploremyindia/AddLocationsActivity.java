@@ -70,8 +70,11 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddLocationsActivity.this, AddTourDetailsActivity.class)
-                        .putParcelableArrayListExtra("tourlist" , (ArrayList<? extends Parcelable>)mTourList));
+                Intent intent = new Intent(AddLocationsActivity.this, AddTourDetailsActivity.class);
+                intent.putParcelableArrayListExtra("tourlist" , (ArrayList<? extends Parcelable>)mTourList);
+                intent.putExtra("City",city);
+
+                startActivity(intent);
 
             }
         });

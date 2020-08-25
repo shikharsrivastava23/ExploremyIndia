@@ -9,17 +9,29 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/detail_recycler_view"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="413dp"
+        android:layout_height="643dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="86dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_publish"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Publish"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
