@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class TourCardsAdapter extends FirebaseRecyclerAdapter<TourCardModel , TourCardsAdapter.TourCardsViewHolder> {
 
+    private onTourListener listener;
 
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
@@ -32,6 +33,13 @@ public class TourCardsAdapter extends FirebaseRecyclerAdapter<TourCardModel , To
         holder.mCardTitle.setText(model.getName());
         holder.mCardUName.setText(model.getUsername());
         holder.mCardRating.setText(model.getRating());
+
+        holder.mViewItinerary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onTourClick(model.getKey_id(), position);
+            }
+        });
     }
 
     @NonNull
@@ -58,6 +66,14 @@ public class TourCardsAdapter extends FirebaseRecyclerAdapter<TourCardModel , To
             mCardRating = itemView.findViewById(R.id.tour_card_rating);
             mViewItinerary = itemView.findViewById(R.id.tour_card_next_btn);
         }
+    }
+
+    public interface onTourListener{
+        void onTourClick(String ref_id, int position);
+    }
+
+    public void setOnTourListener(onTourListener listener){
+        this.listener = listener;
     }
 
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -92,6 +93,17 @@ public class ExploreCityHomeActivity extends AppCompatActivity {
         adapter = new TourCardsAdapter(options);
         recyclerView.setAdapter(adapter);
 
+        adapter.setOnTourListener(new TourCardsAdapter.onTourListener() {
+            @Override
+            public void onTourClick(String ref_id, int position) {
+//                Toast.makeText(ExploreCityHomeActivity.this, ref_id, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(ExploreCityHomeActivity.this,CityTourMainActivity.class);
+                intent.putExtra("key_id",ref_id);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -99,4 +111,6 @@ public class ExploreCityHomeActivity extends AppCompatActivity {
         super.onStart();
         adapter.startListening();
     }
+
+
 }
