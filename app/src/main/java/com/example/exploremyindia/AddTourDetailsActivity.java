@@ -1,5 +1,7 @@
 package com.example.exploremyindia;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -38,11 +41,6 @@ public class AddTourDetailsActivity extends AppCompatActivity {
         detail_list = intent.getParcelableArrayListExtra("tourlist");
         city_name = intent.getStringExtra("City");
 
-
-//        for(Tour it: detail_list){
-//            System.out.println(it.getPlace_name());
-//        }
-
         recyclerView = findViewById(R.id.detail_recycler_view);
         mPublish_btn = findViewById(R.id.btn_publish);
 
@@ -64,15 +62,27 @@ public class AddTourDetailsActivity extends AppCompatActivity {
                 DatabaseReference newTourref = tour_itenary_ref.push();
                 String key = newTourref.getKey();
                 tour_itenary_ref.child(key).setValue(mp);
-
-                Map<String,String> tc_mp = new HashMap<String,String>();
-
-                tc_mp.put("Name","test_name");
-                tc_mp.put("Username","test_user");
-                tc_mp.put("Rating","4.5");
+//
+//                Map<String,String> tc_mp = new HashMap<String,String>();
+//
+//
+//                tc_mp.put("Name","test_name");
+//                tc_mp.put("Username","test_user");
+//                tc_mp.put("Rating","4.5");
+//                tc_mp.put("key_id",key);
+//
+                TourCardModel tourCardModel = new TourCardModel("test_name","test_user2","4.0",key);
 
                 DatabaseReference tourCard = db.getReference("Tour_cards").child(city_name);
-                tourCard.child(key).setValue(tc_mp);
+                tourCard.child(key).setValue(tourCardModel, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        if(error == null){
+                            Toast.makeText(AddTourDetailsActivity.this, "Published!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(AddTourDetailsActivity.this, ExploreMainActivity.class));
+                        }
+                    }
+                });
 
             }
         });
