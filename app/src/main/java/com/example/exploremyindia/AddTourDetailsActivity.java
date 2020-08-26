@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -70,8 +73,18 @@ public class AddTourDetailsActivity extends AppCompatActivity {
 //                tc_mp.put("Username","test_user");
 //                tc_mp.put("Rating","4.5");
 //                tc_mp.put("key_id",key);
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String u_name = "";
+                if (user != null) {
+                    // Name, email address, and profile photo Url
+                     u_name = user.getDisplayName();
+                }
+                TextInputEditText mTourName = findViewById(R.id.tour_name_txt);
+                String tour_name = mTourName.getText().toString().trim();
+
 //
-                TourCardModel tourCardModel = new TourCardModel("test_name","test_user2","4.0",key);
+                TourCardModel tourCardModel = new TourCardModel(tour_name,u_name.toString(),"0.0",key);
 
                 DatabaseReference tourCard = db.getReference("Tour_cards").child(city_name);
                 tourCard.child(key).setValue(tourCardModel, new DatabaseReference.CompletionListener() {
