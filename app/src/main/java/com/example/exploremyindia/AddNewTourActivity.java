@@ -28,7 +28,6 @@ import com.mmi.services.api.autosuggest.AutoSuggestCriteria;
 import com.mmi.services.api.autosuggest.MapmyIndiaAutoSuggest;
 import com.mmi.services.api.autosuggest.model.AutoSuggestAtlasResponse;
 import com.mmi.services.api.autosuggest.model.ELocation;
-import com.mmi.services.api.textsearch.MapmyIndiaTextSearch;
 
 import java.util.ArrayList;
 
@@ -45,6 +44,8 @@ public class AddNewTourActivity extends AppCompatActivity {
     private LinearLayoutManager mLinearLayoutManager;
     private Handler handler;
 
+    Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,8 @@ public class AddNewTourActivity extends AppCompatActivity {
 
         mCitySearch = findViewById(R.id.txt_city_search);
         mNext = findViewById(R.id.btn_city_next);
+
+        intent = new Intent(AddNewTourActivity.this, AddLocationsActivity.class);
 
         handleAutoSuggest();
 
@@ -65,7 +68,7 @@ public class AddNewTourActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(city_search)){
                     Toast.makeText(AddNewTourActivity.this, "Please Enter a City", Toast.LENGTH_SHORT).show();
                 }else{
-                    Intent intent = new Intent(AddNewTourActivity.this, AddLocationsActivity.class);
+
                     intent.putExtra("City",city_search);
                     startActivity(intent);
                 }
@@ -152,6 +155,7 @@ public class AddNewTourActivity extends AppCompatActivity {
 
     public void selectedPlace(ELocation eloc){
         mCitySearch.setText(eloc.placeName.toString());
+        //intent.putExtra("City_Eloc",eloc.);
     }
 
     void handleNavMenu(){

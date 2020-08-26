@@ -45,30 +45,39 @@
             tools:layout_editor_absoluteY="87dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/btn_add_place"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Add Place"
-        app:icon="@drawable/ic_baseline_add_24"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/location_search_recycler_view"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Places_Search_textfield" />
 
     <Button
+        android:id="@+id/btn_add_place"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Place"
+        app:icon="@drawable/ic_baseline_add_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_search_recycler_view" />
+
+    <Button
         android:id="@+id/btn_place_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Add Details"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_add_place"
-        android:text="Add Details" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_place" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,10 +3,15 @@ package com.example.exploremyindia;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +25,10 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mmi.services.api.autosuggest.AutoSuggestCriteria;
+import com.mmi.services.api.autosuggest.MapmyIndiaAutoSuggest;
+import com.mmi.services.api.autosuggest.model.AutoSuggestAtlasResponse;
+import com.mmi.services.api.autosuggest.model.ELocation;
 import com.mmi.services.api.geocoding.GeoCode;
 import com.mmi.services.api.geocoding.GeoCodeResponse;
 import com.mmi.services.api.geocoding.MapmyIndiaGeoCoding;
@@ -46,6 +55,10 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
 
     private ArrayList<Tour> mTourList;
 
+    private RecyclerView recyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
+    private Handler handler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +79,8 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
         mNextButton = findViewById(R.id.btn_place_next);
 
         mTourList = new ArrayList<>();
+
+        handleAutoSuggest();
 
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +194,89 @@ public class AddLocationsActivity extends AppCompatActivity implements OnMapRead
                 Toast.makeText(AddLocationsActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void handleAutoSuggest() {
+
+        recyclerView = findViewById(R.id.location_search_recycler_view);
+        mLinearLayoutManager = new LinearLayoutManager(AddLocationsActivity.this);
+        recyclerView.setLayoutManager(mLinearLayoutManager);
+        //recyclerView.setZ(1.0);
+        recyclerView.setVisibility(View.GONE);
+        handler = new Handler();
+
+        mPlaceTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //handler.postDelayed(() -> {
+                    recyclerView.setVisibility(View.GONE);
+                    if (s.length() < 3)
+                        recyclerView.setAdapter(null);
+
+                    if (s != null && s.toString().trim().length() < 2) {
+                        recyclerView.setAdapter(null);
+                        return;
+                    }
+
+                    if (s.length() > 2) {
+                        if (CheckInternet.isNetworkAvailable(AddLocationsActivity.this)) {
+                            callAutoSuggestApi(s.toString());
+                        } else {
+                            //showToast(getString(R.string.pleaseCheckInternetConnection));
+                        }
+                    }
+                //}, 300);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void callAutoSuggestApi(String searchString) {
+        MapmyIndiaAutoSuggest.builder()
+                .query(searchString)
+                .build()
+                .enqueueCall(new Callback<AutoSuggestAtlasResponse>() {
+                    @Override
+                    public void onResponse(Call<AutoSuggestAtlasResponse> call, Response<AutoSuggestAtlasResponse> response) {
+                        if (response.code() == 200) {
+                            if (response.body() != null) {
+                                ArrayList<ELocation> suggestedList = response.body().getSuggestedLocations();
+                                if (suggestedList.size() > 0) {
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    AutoSuggestAdapter autoSuggestAdapter = new AutoSuggestAdapter(suggestedList, eLocation -> {
+                                        selectedPlace(eLocation);
+                                        recyclerView.setVisibility(View.GONE);
+                                    });
+                                    recyclerView.setAdapter(autoSuggestAdapter);
+                                }
+                            } else {
+                                //showToast("Not able to get value, Try again.");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AutoSuggestAtlasResponse> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
+
+    }
+
+
+    public void selectedPlace(ELocation eloc){
+        mPlaceTextSearch.setText(eloc.placeName.toString());
+        mPlaceTextSearch.clearFocus();
+        recyclerView.setVisibility(View.GONE);
     }
 
 
