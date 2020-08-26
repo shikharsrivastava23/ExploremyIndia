@@ -45,6 +45,26 @@ public class ExploreMainActivity extends AppCompatActivity {
             }
         });
 
+        ImageView im3 = findViewById(R.id.imageView3);
+
+        im3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(ExploreMainActivity.this, "LKO!", Toast.LENGTH_SHORT).show();
+                nextActivity("hyderabad");
+            }
+        });
+
+        ImageView im4 = findViewById(R.id.imageView4);
+
+        im4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(ExploreMainActivity.this, "LKO!", Toast.LENGTH_SHORT).show();
+                nextActivity("mumbai");
+            }
+        });
+
 
     }
 
