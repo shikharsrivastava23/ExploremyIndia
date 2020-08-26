@@ -13,15 +13,30 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mapbox.core.constants.Constants;
+import com.mapbox.geojson.Point;
+import com.mapbox.geojson.utils.PolylineUtils;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mmi.services.api.directions.DirectionsCriteria;
+import com.mmi.services.api.directions.MapmyIndiaDirections;
+import com.mmi.services.api.directions.models.DirectionsResponse;
+import com.mmi.services.api.directions.models.DirectionsRoute;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CityTourMainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -31,6 +46,8 @@ public class CityTourMainActivity extends AppCompatActivity implements OnMapRead
     private MapView mapView;
     private List<Tour> list;
     private String key_id;
+
+    DirectionPolylinePlugin directionPolylinePlugin;
 
 
     @Override
@@ -53,7 +70,6 @@ public class CityTourMainActivity extends AppCompatActivity implements OnMapRead
 
 
         mapmyIndiaMap.setPadding(20, 20, 20, 20);
-//        profileTabLayout.setVisibility(View.VISIBLE);
 
 //        mapmyIndiaMap.setCameraPosition(setCameraAndTilt());
 //        if (CheckInternet.isNetworkAvailable(DirectionActivity.this)) {
@@ -76,6 +92,7 @@ public class CityTourMainActivity extends AppCompatActivity implements OnMapRead
                 mapmyIndiaMap.setCameraPosition(cameraPosition);
 
                 addMarkers(list);
+                plotDirections(list);
             }
 
             @Override
@@ -86,7 +103,51 @@ public class CityTourMainActivity extends AppCompatActivity implements OnMapRead
 
     }
 
-    private void addMarkers(List<Tour> list) {
+    private void plotDirections(List<Tour> list) {
+        int n= list.size();
+        MapmyIndiaDirections.Builder mmidb = MapmyIndiaDirections.builder();
+
+        mmidb.origin(Point.fromLngLat(list.get(0).getLongitude(),list.get(0).getLatitude()))
+                .destination(Point.fromLngLat(list.get(n-1).getLongitude(),list.get(n-1).getLatitude()));
+
+        for(int i=1;i<n-1;i++){
+            mmidb.addWaypoint(Point.fromLngLat(list.get(i).getLongitude() , list.get(i).getLatitude()));
+        }
+
+        mmidb.profile(DirectionsCriteria.PROFILE_DRIVING)
+                .resource(DirectionsCriteria.RESOURCE_ROUTE)
+                .steps(true)
+                .alternatives(false)
+                .overview(DirectionsCriteria.OVERVIEW_FULL).build().enqueueCall(new Callback<DirectionsResponse>() {
+            @Override
+            public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body() != null) {
+                        DirectionsResponse directionsResponse = response.body();
+                        List<DirectionsRoute> results = directionsResponse.routes();
+
+                        if (results.size() > 0) {
+                            //mapmyIndiaMap.clear();
+                            DirectionsRoute directionsRoute = results.get(0);
+                            if (directionsRoute != null && directionsRoute.geometry() != null) {
+                                drawPath(PolylineUtils.decode(directionsRoute.geometry(), Constants.PRECISION_6));
+                                //updateData(directionsRoute);
+                            }
+                        }
+                    }
+                } else {
+                    Toast.makeText(CityTourMainActivity.this, response.message() + response.code(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DirectionsResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    private void addMarkers(@NotNull List<Tour> list) {
 
         for(Tour item: list){
             mapmyIndiaMap.addMarker(new MarkerOptions().position(new LatLng(
@@ -94,7 +155,27 @@ public class CityTourMainActivity extends AppCompatActivity implements OnMapRead
         }
     }
 
+    private void drawPath(@NonNull List<Point> waypoints) {
+        ArrayList<LatLng> listOfLatLng = new ArrayList<>();
+        for (Point point : waypoints) {
+            listOfLatLng.add(new LatLng(point.latitude(), point.longitude()));
+        }
 
+        if(directionPolylinePlugin == null) {
+            directionPolylinePlugin = new DirectionPolylinePlugin(mapmyIndiaMap, mapView, DirectionsCriteria.PROFILE_DRIVING);
+            directionPolylinePlugin.createPolyline(listOfLatLng);
+        } else {
+            directionPolylinePlugin.updatePolyline(DirectionsCriteria.PROFILE_DRIVING, listOfLatLng);
+
+        }
+//        mapmyIndiaMap.addPolyline(new PolylineOptions().addAll(listOfLatLng).color(Color.parseColor("#3bb2d0")).width(4));
+        LatLngBounds latLngBounds = new LatLngBounds.Builder().includes(listOfLatLng).build();
+        mapmyIndiaMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 30));
+    }
+
+
+
+    //Overrides
 
     @Override
     public void onMapError(int i, String s) {
