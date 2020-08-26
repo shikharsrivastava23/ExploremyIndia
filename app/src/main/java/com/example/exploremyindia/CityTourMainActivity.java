@@ -2,12 +2,19 @@ package com.example.exploremyindia;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.Sampler;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +56,9 @@ public class CityTourMainActivity extends AppCompatActivity implements OnMapRead
 
     DirectionPolylinePlugin directionPolylinePlugin;
 
+    private ConstraintLayout mBottomSheet;
+    private BottomSheetBehavior mBottomSheetBehaviour;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +73,9 @@ public class CityTourMainActivity extends AppCompatActivity implements OnMapRead
         mapView.getMapAsync(this);
 
         list = new ArrayList<>();
+
+        mBottomSheet = findViewById(R.id.itinerary_bottom_sheet);
+        mBottomSheetBehaviour = BottomSheetBehavior.from(mBottomSheet);
     }
 
     public void onMapReady(MapboxMap mapmyIndiaMap) {
@@ -93,6 +106,7 @@ public class CityTourMainActivity extends AppCompatActivity implements OnMapRead
 
                 addMarkers(list);
                 plotDirections(list);
+                populateListView(list);
             }
 
             @Override
@@ -103,7 +117,29 @@ public class CityTourMainActivity extends AppCompatActivity implements OnMapRead
 
     }
 
-    private void plotDirections(List<Tour> list) {
+    private void populateListView(List<Tour> list) {
+        ListView listView = findViewById(R.id.list_view_itinerary);
+        String[] place_name_list = new String[list.size()];
+        int i =0;
+        for(Tour item: list){
+            place_name_list[i++] = item.getPlace_name();
+        }
+
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,place_name_list);
+        listView.setAdapter(listAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CityTourMainActivity.this,PlaceDetailsActivity.class);
+                intent.putExtra("tour_item",list.get(position));
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    private void plotDirections(@NotNull List<Tour> list) {
         int n= list.size();
         MapmyIndiaDirections.Builder mmidb = MapmyIndiaDirections.builder();
 

@@ -44,6 +44,8 @@ public class ExploreMainActivity extends AppCompatActivity {
                 nextActivity("delhi");
             }
         });
+
+
     }
 
     void nextActivity(String city){
