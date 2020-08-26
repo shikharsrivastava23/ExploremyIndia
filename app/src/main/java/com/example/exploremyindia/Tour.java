@@ -9,6 +9,10 @@ public class Tour implements Parcelable {
     double latitude;
     double longitude;
 
+    public Tour(){
+        super();
+    }
+
     public Tour(String place_name, String description, double latitude, double longitude) {
         this.place_name = place_name;
         this.description = description;
