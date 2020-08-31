@@ -3,6 +3,24 @@ A city tour sharing app using MapmyIndia APIs.
 ## Figma 
 Initial Figma Mockup: https://www.figma.com/file/RliN6KIzFIf36ZlZXwX0op/mockup
 
+## Screenshots of the prototype app running on phhysical device
+
+
+| <img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.16%20(1).jpeg?sanitize=true&raw=true" width="165" />  | <img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.16%20(2).jpeg" width="165" />  |  
+|:-:|---|
+
+
+| <img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.16%20(4).jpeg" width="250" />  | <img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.16%20(5).jpeg" width="250" />  | <img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.16%20(6).jpeg" width="250" />  |<img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.16%20(7).jpeg" width="250" /> | <img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.16%20(9).jpeg" width="250" /> |
+|:-:|---|---|---|---|
+
+
+| <img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.16%20(3).jpeg" width="165" />  | <img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.17.jpeg" width="165" />  |  <img src="https://raw.githubusercontent.com/shikharsrivastava23/ExploremyIndia/master/demo_images/WhatsApp%20Image%202020-08-31%20at%2023.28.17%20(1).jpeg" width="165" /> |
+|:-:|---|---|
+
+
+
+
+
 ## Instructions to Run the prototype. 
 
 1. Clone the entire repo, and run it using Android Studio. All the settings files are included, and the app should run out of the box.
